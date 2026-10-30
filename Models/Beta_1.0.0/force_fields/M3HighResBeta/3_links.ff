@@ -1,0 +1,120 @@
+;;;;; ======================================================================
+;;;;;  M3HighResBeta: High-Resolution Martini 3 Protein Model
+;;;;; ----------------------------------------------------------------------
+;;;;;  File        : 3_links.ff
+;;;;;  Description : Inter-residue links: backbone connectivity and
+;;;;;                disulfide bridges
+;;;;;  Version     : beta_1.0.0 (Oct 2026)
+;;;;;  Format      : vermouth / martinize2 force field
+;;;;;
+;;;;;  Please cite:
+;;;;;    L. Borges-Araujo, et al., 2026 (in preparation)
+;;;;;    PCT Souza, et al., Nat. Methods, 2021. DOI: 10.1038/s41592-021-01098-3
+;;;;;  See citations.bib for full references.
+;;;;; ======================================================================
+;
+; Copyright 2026 The Authors
+;
+; Licensed under the Apache License, Version 2.0 (the "License");
+; you may not use this file except in compliance with the License.
+; You may obtain a copy of the License at
+;
+;    http://www.apache.org/licenses/LICENSE-2.0
+;
+; Unless required by applicable law or agreed to in writing, software
+; distributed under the License is distributed on an "AS IS" BASIS,
+; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+; See the License for the specific language governing permissions and
+; limitations under the License.
+
+[ citations ]
+M3HighResBeta
+Martini3
+
+[ macros ]
+protein_resnames      "GLY|ALA|CYS|VAL|LEU|ILE|MET|PRO|HYP|ASN|GLN|ASP|ASPP|ASH|GLU|GLUP|GLH|THR|SER|LYS|LSN|LYN|ARG|ARG0|HIS|HISH|HSE|HSD|HSP|PHE|TYR|TRP|DGLY|DALA|DCYS|DVAL|DLEU|DILE|DMET|DPRO|DHYP|DASN|DGLN|DASP|DAPP|DGLU|DGLP|DTHR|DSER|DLYS|DLSN|DARG|DARG0|DHIS|DHISH|DHSE|DHSD|DHSP|DPHE|DTYR|DTRP"
+
+protein_resnames_pro  "PRO|HYP|DPRO|DHYP"
+stiff_fc              10000
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;  BACKBONE LINKS                                    ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[ link ]
+resname $protein_resnames
+[ constraints ]
+;i   j    funct
+ CA  +CA      1  0.384  {"edge":false, "group": "CA  — +CA ", "ifndef": "FLEXIBLE"}
+[ bonds ]
+ CA  +CA  1  0.384  $stiff_fc  {"edge":false, "group": "CA  — +CA ", "ifdef": "FLEXIBLE"}
+[ exclusions ]
+ C  +C
+[ edges ]
+ CA  C
+ C   +N
+ +N  +CA
+ +C  +CA
+
+[ link ]
+resname $protein_resnames
+[ bonds ]
+;i   j   funct  length
+ CA  -O      1   0.282  20000  {"edge": false, "group": "CA  — -O "}
+[ edges ]
+ CA  -N
+ -N  -C
+ -C  -O
+
+[ link ]
+resname $protein_resnames
+[ atoms ]
+ CA   { }
+ C    { }
+ O    { }
+ +N   { }
+ +CA  { }
+[ virtual_sites3 ]
+ C  +CA  CA  O  1  0.450  0.312  {"edge": false, "group": "C  VS3 +CA  — CA  — O : C "}
+[ edges ]
+ CA   C
+ CA   O
+ C    +N
+ C    O
+ +N   +CA
+ +CA  +O
+[ exclusions ]
+ C  +N  +O
+ O  +N
+
+[ link ]
+resname $protein_resnames
+[ atoms ]
+ CA   { }
+ C    { }
+ O    { }
+ +N   { }
+ +CA  { }
+[ virtual_sites3 ]
+ +N  +CA  CA  O  1  0.478  -0.194  {"edge": false, "group": "N  VS3 +CA  — CA  — O : N "}
+[ edges ]
+ +N  +CA
+ +N  C
+ C   O
+ C   CA
+ CA  O
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;  DISULFIDE BRIDGES                                 ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[ link ]
+resname "CYS"
+[ constraints ]
+ SC1  >SC1  1  0.24  {"comment": "Disulfide bridge"}
+[ features ]
+disulfide
+[ info ]
+Disulfide bridge found between residues {SC1[chain]}-{SC1[resname]}{SC1[resid]} and {>SC1[chain]}-{>SC1[resname]}{>SC1[resid]}

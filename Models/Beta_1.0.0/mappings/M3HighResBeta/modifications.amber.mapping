@@ -1,0 +1,76 @@
+;;;;; ======================================================================
+;;;;;  M3HighResBeta: High-Resolution Martini 3 Protein Model
+;;;;; ----------------------------------------------------------------------
+;;;;;  File        : modifications.amber.mapping
+;;;;;  Description : AMBER -> M3HighResBeta mappings for terminal
+;;;;;                modifications
+;;;;;  Version     : beta_1.0.0 (Oct 2026)
+;;;;;  Format      : vermouth / martinize2 modification mapping
+;;;;;
+;;;;;  Please cite:
+;;;;;    L. Borges-Araujo, et al., 2026 (in preparation)
+;;;;;    PCT Souza, et al., Nat. Methods, 2021. DOI: 10.1038/s41592-021-01098-3
+;;;;;  See citations.bib for full references.
+;;;;; ======================================================================
+;
+; Copyright 2026 The Authors
+;
+; Licensed under the Apache License, Version 2.0 (the "License");
+; you may not use this file except in compliance with the License.
+; You may obtain a copy of the License at
+;
+;    http://www.apache.org/licenses/LICENSE-2.0
+;
+; Unless required by applicable law or agreed to in writing, software
+; distributed under the License is distributed on an "AS IS" BASIS,
+; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+; See the License for the specific language governing permissions and
+; limitations under the License.
+
+[ modification ]
+[ from ]
+amber
+[ to ]
+M3HighResBeta
+[ from blocks ]
+C-ter
+[ to blocks ]
+C-ter
+
+[ from nodes ]
+N
+HN
+[ from edges ]
+HN N
+N CA
+
+[ mapping ]
+CA CA
+C  C
+O  O
+OXT O
+
+
+[modification]
+[ from ]
+amber
+[ to ]
+M3HighResBeta
+[ from blocks ]
+N-ter
+[ to blocks ]
+N-ter
+
+[ from nodes ]
+C
+O
+[ from edges ]
+C O
+CA C
+
+[ mapping ]
+HN2 N
+HN3 N
+N   N
+CA  CA
+C   C

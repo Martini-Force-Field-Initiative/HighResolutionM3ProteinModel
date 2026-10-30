@@ -1,0 +1,226 @@
+;;;;; ======================================================================
+;;;;;  M3HighResBeta: High-Resolution Martini 3 Protein Model
+;;;;; ----------------------------------------------------------------------
+;;;;;  File        : 6_modifications.ff
+;;;;;  Description : Terminal modifications
+;;;;;  Version     : beta_1.0.0 (Oct 2026)
+;;;;;  Format      : vermouth / martinize2 force field
+;;;;;
+;;;;;  Please cite:
+;;;;;    L. Borges-Araujo, et al., 2026 (in preparation)
+;;;;;    PCT Souza, et al., Nat. Methods, 2021. DOI: 10.1038/s41592-021-01098-3
+;;;;;  See citations.bib for full references.
+;;;;; ======================================================================
+;
+; Copyright 2026 The Authors
+;
+; Licensed under the Apache License, Version 2.0 (the "License");
+; you may not use this file except in compliance with the License.
+; You may obtain a copy of the License at
+;
+;    http://www.apache.org/licenses/LICENSE-2.0
+;
+; Unless required by applicable law or agreed to in writing, software
+; distributed under the License is distributed on an "AS IS" BASIS,
+; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+; See the License for the specific language governing permissions and
+; limitations under the License.
+
+[ citations ]
+M3HighResBeta
+Martini3
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;  TERMINAL MODIFICATIONS                            ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[ modification ]
+C-ter
+[ atoms ]
+ C  {"replace": {"atype": "SQ5n", "mass": "36.0", "charge": -1.0}}
+ O  {"replace": {"atype": "U", "mass": "36.0", "charge": 0}}
+ N  {"replace": {}}
+[ constraints ]
+ CA  C  1  0.15  {"group": "C-TER", "ifndef": "FLEXIBLE"}
+ O   C  1  0.13  {"group": "C-TER", "ifndef": "FLEXIBLE"}
+[ bonds ]
+ CA  C  1  0.15  30000  {"group": "C-TER", "ifdef": "FLEXIBLE"}
+ O   C  1  0.13  30000  {"group": "C-TER", "ifdef": "FLEXIBLE"}
+[ dihedrals ]
+ N  CA  C  O  3  -50.  50.  0.  0.  0.  0.  {"group": "C-TER", "edge":false}
+[ edges ]
+ CA  C
+ CA  O
+ CA  N
+
+[ modification ]
+N-ter
+[ atoms ]
+ N  {"replace": {"atype": "SQ4p", "charge": 1.0, "mass": "36.0"}}
+ C  {"replace": {"atype": "TP1", "charge": 0}}
+ O  {"replace": {}}
+[ constraints ]
+ CA  N  1  0.170  {"edge": false, "group": "N-TER", "ifndef": "FLEXIBLE"}
+[ bonds ]
+ CA  N  1  0.170  30000  {"edge": false, "group": "N-TER", "ifdef": "FLEXIBLE"}
+[ dihedrals ]
+ N  CA  C  O  3  -50.  50.  0.  0.  0.  0.  {"group": "N-TER", "edge":false}
+[ edges ]
+ CA  C
+ CA  N
+ C   O
+
+[ modification ]
+COOH-ter
+[ atoms ]
+ C  {"replace": {"atype": "SP1", "mass": "36.0", "charge": 0.0}}
+ O  {"replace": {"atype": "U", "mass": "36.0", "charge": 0.0}}
+ N  {"replace": {}}
+[ constraints ]
+ CA  C  1  0.15  {"group": "C-TER", "ifndef": "FLEXIBLE"}
+ O   C  1  0.13  {"group": "C-TER", "ifndef": "FLEXIBLE"}
+[ bonds ]
+ CA  C  1  0.15  30000  {"group": "C-TER", "ifdef": "FLEXIBLE"}
+ O   C  1  0.13  30000  {"group": "C-TER", "ifdef": "FLEXIBLE"}
+[ dihedrals ]
+ N  CA  C  O  3  -50.  50.  0.  0.  0.  0.  {"group": "C-TER", "edge":false}
+[ edges ]
+ CA  C
+ CA  O
+ CA  N
+
+[ modification ]
+CT1-ter
+[ atoms ]
+ C  {"replace": {"atype": "U", "mass": "36.0", "charge": 0.0}}
+ O  {"replace": {"atype": "SN4a", "mass": "54.0", "charge": 0.0}}  ; could be N4a instead.
+ N  {"replace": {}}
+[ constraints ]
+ CA  C  1  0.15  {"group": "C-TER", "ifndef": "FLEXIBLE"}
+ O   C  1  0.13  {"group": "C-TER", "ifndef": "FLEXIBLE"}
+[ bonds ]
+ CA  C  1  0.15  30000  {"group": "C-TER", "ifdef": "FLEXIBLE"}
+ O   C  1  0.13  30000  {"group": "C-TER", "ifdef": "FLEXIBLE"}
+[ dihedrals ]
+ N  CA  C  O  3  -50.  50.  0.  0.  0.  0.  {"group": "C-TER", "edge":false}
+[ edges ]
+ CA  C
+ CA  O
+ CA  N
+
+[ modification ]
+CT2-ter
+[ atoms ]
+ C  {"replace": {"atype": "U", "mass": "36.0", "charge": 0.0}}
+ O  {"replace": {"atype": "SP5", "mass": "54.0", "charge": 0.0}}
+ N  {"replace": {}}
+[ constraints ]
+ CA  C  1  0.15  {"group": "C-TER", "ifndef": "FLEXIBLE"}
+ O   C  1  0.13  {"group": "C-TER", "ifndef": "FLEXIBLE"}
+[ bonds ]
+ CA  C  1  0.15  30000  {"group": "C-TER", "ifdef": "FLEXIBLE"}
+ O   C  1  0.13  30000  {"group": "C-TER", "ifdef": "FLEXIBLE"}
+[ dihedrals ]
+ N  CA  C  O  3  -50.  50.  0.  0.  0.  0.  {"group": "C-TER", "edge":false}
+[ edges ]
+ CA  C
+ CA  O
+ CA  N
+
+[ modification ]
+CT3-ter
+[ atoms ]
+ C  {"replace": {"atype": "U", "mass": "36.0", "charge": 0.0}}
+ O  {"replace": {"atype": "SP2", "mass": "54.0", "charge": 0.0}}
+ N  {"replace": {}}
+[ constraints ]
+ CA  C  1  0.15  {"group": "C-TER", "ifndef": "FLEXIBLE"}
+ O   C  1  0.13  {"group": "C-TER", "ifndef": "FLEXIBLE"}
+[ bonds ]
+ CA  C  1  0.15  30000  {"group": "C-TER", "ifdef": "FLEXIBLE"}
+ O   C  1  0.13  30000  {"group": "C-TER", "ifdef": "FLEXIBLE"}
+[ dihedrals ]
+ N  CA  C  O  3  -50.  50.  0.  0.  0.  0.  {"group": "C-TER", "edge":false}
+[ edges ]
+ CA  C
+ CA  O
+ CA  N
+
+[ modification ]
+NH2-ter
+[ atoms ]
+ N  {"replace": {"atype": "TN6d", "charge": 0.0, "mass": "36.0"}}
+ C  {"replace": {"charge": 0.0}}  ; We keep it the same
+ O  {"replace": {} }
+[ constraints ]
+ CA  N  1  0.170  {"edge": false, "group": "N-TER", "ifndef": "FLEXIBLE"}
+[ bonds ]
+ CA  N  1  0.170  30000  {"edge": false, "group": "N-TER", "ifdef": "FLEXIBLE"}
+[ dihedrals ]
+ N  CA  C  O  3  -50.  50.  0.  0.  0.  0.  {"group": "N-TER", "edge":false}
+[ edges ]
+ CA  C
+ CA  N
+ C   O
+
+[ modification ]
+NACE-ter
+[ atoms ]
+ N  {"replace": {"atype": "SP3", "charge": 0.0, "mass": "54.0"}}  ; Could be P2 or something
+ C  {"replace": {"charge": 0.0}}  ; We keep it the same
+ O  {"replace": {} }
+[ constraints ]
+ CA  N  1  0.295  {"edge": false, "group": "N-TER", "ifndef": "FLEXIBLE"}
+[ bonds ]
+ CA  N  1  0.170  30000  {"edge": false, "group": "N-TER", "ifdef": "FLEXIBLE"}
+[ dihedrals ]
+ N  CA  C  O  3  -50.  50.  0.  0.  0.  0.  {"group": "N-TER", "edge":false}
+[ edges ]
+ CA  C
+ CA  N
+ C   O
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;  GLUTAMATE MODIFICATIONS                           ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[ modification ]
+GLU-HE1
+[ atoms ]
+ SC1  {"replace": {"atype": "P2", "charge": 0}}
+
+[ modification ]
+GLU-HE2
+[ atoms ]
+ SC1  {"replace": {"atype": "P2", "charge": 0}}
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;  ASPARTATE MODIFICATIONS                           ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[ modification ]
+ASP-HD1
+[ atoms ]
+ SC1  {"replace": {"atype": "P2", "charge": 0}}
+
+[ modification ]
+ASP-HD2
+[ atoms ]
+ SC1  {"replace": {"atype": "P2", "charge": 0}}
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;  LYSINE MODIFICATIONS                              ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[ modification ]
+LYS-LSN
+[ atoms ]
+ SC2  {"resname": "LYS", "replace": {"atype": "SN6d", "charge": 0}}
+
+[ modification ]
+LYS-HZ3
+[ atoms ]
+ SC2  {"replace": {"resname": "LYS"}}

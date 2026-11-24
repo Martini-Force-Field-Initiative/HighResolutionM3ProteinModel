@@ -1,4 +1,4 @@
-# M3HighResBeta: High-Resolution Martini 3 Protein Model
+# High-Resolution Martini 3 Protein Model
 
 **Open beta** · Current version: `beta_1.0.0` (Oct 2026) · Force field ID: `M3HighResBeta` · License: Apache 2.0
 
@@ -15,12 +15,30 @@ If you use this model, please cite:
 
 Full references are in [citations.bib](Models/Beta_1.0.0/force_fields/M3HighResBeta/citations.bib). The force field files also carry `[ citations ]` sections, so `martinize2` lists these papers in generated topologies.
 
-
 ## Requirements
 
 1. **GROMACS 2023.3 or newer.** Earlier versions have constraint and virtual-site convergence issues that lead to crashes.
-2. **vermouth / martinize2 > 0.14.0.** Older versions produce incorrect `.itp` parameters.
+2. **Martinize2 compatibility.** We recommend installing the stable PyPI release of Martinize2 (provided by the `vermouth` package), rather than the development version directly from GitHub:
+
+   ```bash
+   pip install vermouth==0.15.0
+   ```
+
+   Versions older than 0.14.0 may produce incorrect `.itp` parameters. The GitHub development version currently has known compatibility issues with terminal residue assignment.
+
 3. **The supplied `martini_v3.0.0_HighResBeta.itp`.** It leaves the default Martini 3 interactions unchanged, but adds the dummy `Up` bead type and the `CMAP` definitions. Simulations will not run with the stock `martini_v3.0.0.itp`; `grompp` will error out on the missing `CMAP` types.
+
+### Known limitations — terminal residues
+
+The current open-beta release has some known compatibility issues with terminal modifications in Martinize2.
+
+- **Standard L-amino-acid termini:** Expected to work correctly with Martinize2 versions `0.14.x` and `0.15.0`.
+- **D-amino acids and hydroxyproline (HYP) at terminal positions:** Terminal modifications may not be correctly applied.
+- **Martinize2 development version (GitHub):** Currently has compatibility issues that may result in missing terminal modifications, even for standard amino acids.
+
+Users should carefully check Martinize2 warnings and verify that the expected terminal modifications are present in the generated `.itp` files.
+
+Please report unexpected behavior through GitHub Issues. These limitations are being investigated and will be addressed in future updates.
 
 ## Martinizing a protein
 
@@ -51,6 +69,7 @@ The generated `topol.top` includes `martini.itp`. Replace that line with `#inclu
 
 1. Run `martinize2` **without** `-dssp` or `-ss` (and without `-elastic`). OLIVES does not use the secondary-structure-biased bonded potentials. martinize2 will warn about the missing flag, so add `-maxwarn 1` (together with `-noscfix`).
 2. Run the script on the resulting CG structure and topology:
+
    ```bash
    python3 OLIVES/OLIVES_v2.9.1_alpha_0.2.2.py -c cg.pdb -i molecule_0.itp \
        --ss_scaling 0.3 --ts_scaling 0.8
@@ -78,7 +97,7 @@ Please open a GitHub issue and include:
 
 ### Martinize/vermouth failures
 
-Martinize can fail to introduce all necessary bonded parameters (about 10% of the proteins tested so far), which leads to instabilities and crashes. So far this has been tied to poor starting protein structures.
+In preliminary tests, Martinize2 occasionally failed to introduce all necessary bonded parameters (in approximately 10% of the proteins examined), potentially leading to numerical instabilities or crashes. Some of these issues appeared to be associated with the quality of the starting protein structures.
 
 GROMACS will warn you:
 
